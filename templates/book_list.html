@@ -1,0 +1,14 @@
+    <h1>Список книг</h1>
+
+    {% for book in book %}
+        <li>
+            <h2>{{ book.title }}</h2>
+            <p>Автор: {{ book.author }}</p>
+            <p>Цена: {{ book.price }} руб.</p>
+            <p>Год издания: {{ book.published_year }}</p>
+            <p>Описание: {{ book.description }}</p>
+            <img src="{{ book.image.url }}" alt="{{ book.title }}" width="200">
+            <p><a href="{{ book.book_file.url }}">Скачать книгу</a></p>
+        </li>
+    {% endfor %}
+    
