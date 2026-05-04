@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Личный кабинет всадника</title>
+</head>
+<body>
+
+<div>
+    <h1>Конный Тур</h1>
+    
+    <p><strong>Всадник:</strong> {{ tourist.name }}</p>
+
+    <div>
+        <h3>Твой напарник</h3>
+        <p>Кличка: <strong>{{ tourist.horse.name }}</strong></p>
+    </div>
+
+    <div>
+        <h3>Твои отзывы</h3>
+        {% for review in tourist.my_reviews.all %}
+            <div style="margin-bottom: 20px;">
+                <p><strong>Компания:</strong> {{ review.company.name }}</p>
+                <p><strong>Оценка:</strong> {{ review.stars }} / 5</p>
+                <p><em>"{{ review.text }}"</em></p>
+                
+                <div>
+                    <strong>Услуги компании:</strong>
+                    {% for service in review.company.services.all %}
+                        <span>{{ service.name }}</span>
+                    {% endfor %}
+                </div>
+                <p>Средний рейтинг компании: {{ review.company.get_average_rating }}</p>
+            </div>
+        {% empty %}
+            <p>Отзывов пока нет.</p>
+        {% endfor %}
+    </div>
+</div>
+
+</body>
+</html>

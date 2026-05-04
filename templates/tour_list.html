@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Список всадников</title>
+</head>
+<body>
+
+    <h1>Все участники конных туров</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Имя туриста</th>
+                <th>Закрепленный конь</th>
+                <th>Кол-во отзывов</th>
+                <th>Действие</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tourist in tourists %}
+            <tr>
+                <td>{{ tourist.name }}</td>
+                <td>{{ tourist.horse.name }}</td>
+                <td>{{ tourist.my_reviews.count }}</td>
+                <td>
+                    <a href="{% url 'tourist_detail' tourist.id %}">Смотреть детали</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">Всадников пока нет</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>
