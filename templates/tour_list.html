@@ -2,19 +2,31 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Список всадников</title>
+    <title>Список туристов</title>
+    <style>
+        body { font-family: sans-serif; margin: 40px; background: #f4f4f4; }
+        table { width: 100%; border-collapse: collapse; background: white; }
+        th, td { padding: 12px; border: 1px solid #ddd; text-align: left; }
+        th { background: #2c3e50; color: white; }
+        .btn { padding: 8px 12px; text-decoration: none; border-radius: 4px; color: white; font-size: 14px; }
+        .btn-create { background: #27ae60; margin-bottom: 20px; display: inline-block; }
+        .btn-edit { background: #2980b9; }
+        .btn-delete { background: #c0392b; }
+        .btn-detail { background: #7f8c8d; }
+    </style>
 </head>
 <body>
+    <h1>Записи на конные туры</h1>
+    
+    <!-- ИСПРАВЛЕНО: было tourist_create_url -->
+    <a href="{% url 'tourist_create' %}" class="btn btn-create">+ Записать туриста</a>
 
-    <h1>Все участники конных туров</h1>
-
-    <table border="1">
+    <table>
         <thead>
             <tr>
                 <th>Имя туриста</th>
-                <th>Закрепленный конь</th>
-                <th>Кол-во отзывов</th>
-                <th>Действие</th>
+                <th>Лошадь</th>
+                <th>Действия</th>
             </tr>
         </thead>
         <tbody>
@@ -22,18 +34,19 @@
             <tr>
                 <td>{{ tourist.name }}</td>
                 <td>{{ tourist.horse.name }}</td>
-                <td>{{ tourist.my_reviews.count }}</td>
                 <td>
-                    <a href="{% url 'tourist_detail' tourist.id %}">Смотреть детали</a>
+                    <!-- ИСПРАВЛЕНО: убраны _url во всех ссылках ниже -->
+                    <a href="{% url 'tourist_detail' tourist.pk %}" class="btn btn-detail">Подробнее</a>
+                    <a href="{% url 'tourist_update' tourist.pk %}" class="btn btn-edit">Изменить</a>
+                    <a href="{% url 'tourist_delete' tourist.pk %}" class="btn btn-delete">Удалить</a>
                 </td>
             </tr>
             {% empty %}
             <tr>
-                <td colspan="4">Всадников пока нет</td>
+                <td colspan="3">Записей пока нет.</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-
 </body>
 </html>

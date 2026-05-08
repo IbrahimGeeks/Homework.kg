@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Форма записи</title>
+    <style>
+        body { font-family: sans-serif; margin: 40px; }
+        form { background: white; padding: 20px; border: 1px solid #ddd; max-width: 400px; }
+        .save-btn { background: #27ae60; color: white; border: none; padding: 10px 15px; cursor: pointer; border-radius: 4px; }
+        p { margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <h1>{% if form.instance.pk %}Редактирование{% else %}Новая запись{% endif %}</h1>
+    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save-btn">Сохранить запись</button>
+    </form>
+    
+    <br>
+    <a href="{% url 'tour_list_url' %}">Отмена</a>
+</body>
+</html>
+<a href="{% url 'tour_list' %}">Назад к списку</a>

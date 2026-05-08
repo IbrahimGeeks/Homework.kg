@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Удаление</title>
+    <style>
+        body { font-family: sans-serif; margin: 40px; text-align: center; }
+        .delete-box { display: inline-block; padding: 30px; border: 1px solid #c0392b; background: #fdf2f2; }
+        .confirm-btn { background: #c0392b; color: white; border: none; padding: 10px 20px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="delete-box">
+        <h2>Вы уверены?</h2>
+        <p>Вы собираетесь удалить запись туриста: <strong>{{ tourist.name }}</strong></p>
+        
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="confirm-btn">Да, удалить навсегда</button>
+        </form>
+        <br>
+        <a href="{% url 'tour_list_url' %}">Нет, я передумал</a>
+    </div>
+</body>
+</html>
