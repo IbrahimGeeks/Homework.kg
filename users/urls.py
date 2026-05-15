@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import include, path
 from django.contrib.auth.views import LoginView, LogoutView
 
 from users.forms import LoginFormWithCaptcha

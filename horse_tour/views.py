@@ -4,7 +4,19 @@ from .forms import TouristForm
 
 def tour_list_view(request):
     tourists = Tourist.objects.all()
-    return render(request, 'tour_list.html', {'tourists': tourists})
+    search_query = request.GET.get('search_tour')
+    if search_query:
+        tours = tours.filter(title__icontains=search_query)
+        
+    paginator = Paginator(tours, 3)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    return render(request, 'tours/tour_list.html', {
+        'page_obj': page_obj, 
+        'search_query': search_query
+    })
+    
 
 def tourist_detail_view(request, pk):
     tourist = get_object_or_404(Tourist, pk=pk)

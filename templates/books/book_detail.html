@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ book.title }}</title>
+</head>
+<body>
+    <a href="{% url 'book_list' %}">← Назад к списку</a>
+    <h1>{{ book.title }}</h1>
+    <p>{{ book.description }}</p>
+    <hr>
+    <p style="color: gray;">👁 Количество просмотров: {{ book.views_count }}</p>
+</body>
+</html>

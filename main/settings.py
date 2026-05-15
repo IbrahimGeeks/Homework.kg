@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'horse_tour',
     'users',
     'captcha',
+    'books',
 ]
 
 MIDDLEWARE = [
@@ -120,3 +121,4 @@ AUTH_USER_MODEL = 'users.CustomUser'
 STATIC_URL = 'static/'
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+AUTH_USER_MODEL = 'users.CustomUser'

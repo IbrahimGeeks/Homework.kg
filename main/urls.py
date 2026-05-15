@@ -24,5 +24,8 @@ urlpatterns = [
     path('', include('horse_tour.urls')),
     path('users/', include('users.urls')),
     path('captcha/', include('captcha.urls')),
+    path('books/', include('books.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
